@@ -3,7 +3,7 @@ create database bookhandler;
 
 use bookhandler;
 create table generalInfo(
-dBNumber int, /* Database Number */
+dBNumber int NOT NULL AUTO_INCREMENT , /* Database Number */
 title varchar(255) /*Title of Book*/
 );
 create table formats(
@@ -15,7 +15,6 @@ lang varchar(255) NULL,
 publisher varchar(255) /* I assume different versions can have different publishers */,
 length int NULL /*Page Count*/,
 releaseDate date,
-description varchar(10000)
 );
 create table series(
 	dbNumber int, /* database number */
