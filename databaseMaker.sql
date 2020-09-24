@@ -52,7 +52,6 @@ genre varchar(255) /* Genre Name */
 create table ratingsCollection (
 	dbNumber int, /* Database Number */
     versionNumber int, /* Maybe different versions have different ratings, hard to say */
-    email varchar(255) unique NULL, /* User Email, tied to rating, can be null */
     rating int /* 1 to 5*/
 );
 create table ratingsTotal (
@@ -61,6 +60,15 @@ create table ratingsTotal (
     raterCount int, /* Amount of People Who Rated */
     avgRating float /* Average Rating, May want to limit to X.X decimals, round up*/
 );
+
+
+
+
+-- select generalInfo.dbNumber,title,formats.versionNumber,formatType,ISBN,lang,publisher,length,releaseDate,price from generalInfo left join formats on generalInfo.dbNumber = formats.dbNumber left join pricing on pricing.versionNumber = formats.versionNumber and pricing.dbNumber = formats.dbNumber
+-- select generalInfo.dbNumber,generalInfo.title,formatType,ISBN,lang,publisher,length,releaseDate,totalSold,totalPrice
+--  from generalInfo left join formats on formats.dbNumber = generalInfo.dbNumber 
+-- left join soldTotal on generalInfo.dbNumber = soldTotal.dbNumber and formats.versionNumber = soldTotal.versionNumber
+
 -- Find Book By Database Number 
 -- select generalInfo.title,generalInfo.dBNumber,formats.formatType,formats.ISBN,formats.lang,formats.publisher,formats.length,ratingsTotal.avgRating,ratingsTotal.raterCount
 -- from generalInfo left join formats on generalInfo.dbNumber = formats.dbNumber 
@@ -72,5 +80,11 @@ create table ratingsTotal (
 -- select distinct genre from genres order by genre asc;
 
 -- Find all books of a certain genre
-  select distinct generalInfo.dbNumber,title from genres right join generalInfo on generalInfo.dbNumber = genres.dbNumber 
-  where genres.dbNumber in (select dbNumber from genres where genre = "Action")
+--  select distinct generalInfo.title,generalInfo.dBNumber,formats.formatType,formats.ISBN,formats.lang,formats.publisher,formats.length,ratingsTotal.avgRating,ratingsTotal.raterCount
+--   from genres right join generalInfo on generalInfo.dbNumber = genres.dbNumber left join formats on generalInfo.dbNumber = formats.dbNumber 
+--   left join ratingsTotal on formats.versionNumber = ratingsTotal.versionNumber and ratingsTotal.dbNumber = formats.dbNumber
+--   where genres.dbNumber in (select dbNumber from genres where genre = "Action")
+
+-- Insert genre --
+-- Insert into genres (dbNumber,genre) values (4,"Nonfiction")
+-- select * from genres;

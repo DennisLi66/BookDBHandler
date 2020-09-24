@@ -47,7 +47,7 @@ insert into contributors(dbNumber,versionNumber,personName,roleName) values (1,1
                                                                             (7,1,"Rick Riordan","Author"),(8,1,"Gordan Korman","Author"),(9,1,"Peter Lerangis","Author"),(10,1,"Wan Fokkink","Author");
 /*pricing*/
 TRUNCATE TABLE pricing;
-insert into pricing (dbNumber,versionNumber,price) values (1,1,12.99),(2,1,9.99),(3,1,14.99),(4,1,16.99),(5,1,9.99),(6,1,9.99),(7,1,7.99),(8,1,7.99),(9,1,7.99),(10,1,79.99);
+insert into pricing (dbNumber,versionNumber,price) values (1,1,12.99),(2,1,9.99),(3,1,14.99),(4,1,16.99),(5,1,9.99),(6,1,9.99),(7,1,7.99),(8,1,7.99),(9,1,7.99),(10,1,79.99)(4,2,9.99);
 /*soldHistory and soldTotal*/
 TRUNCATE TABLE soldHistory;
 insert into soldHistory(dbNumber,versionNumber,dateSold,soldAtPriceOf) values (1,1,'2019-01-04',9.99),
@@ -72,13 +72,13 @@ TRUNCATE Table soldTotal;
 insert into soldTotal select dbNumber,versionNumber,count(*),round(sum(soldAtPriceOf),2) from soldHistory group by dbNumber,versionNumber ORDER BY dbNumber,versionNumber asc;
 /*ratingsCollection , ratingsTotal*/
 TRUNCATE TABLE ratingsCollection;
-insert into ratingsCollection(dbNumber,versionNumber,email,rating) values (1,1,NULL,4),(1,1,NULL,3),(1,1,NULL,5),(1,1,NULL,1),(1,1,NULL,2),(1,1,NULL,4),(1,1,NULL,4),(1,1,NULL,3),(1,1,NULL,3),(1,1,NULL,4),(1,1,NULL,4),(1,1,NULL,3),(1,1,NULL,5),(1,1,NULL,5),
-																		  (2,1,"jeffrey@yahoo.com",1),(2,1,NULL,4),(2,1,NULL,5),(2,1,"howards9378@gmail.com",4),(2,1,NULL,3),(2,1,NULL,3),(2,1,NULL,3),(2,1,NULL,4),(2,1,NULL,5),(2,1,NULL,4),(2,1,NULL,1),(2,1,NULL,3),
-                                                                          (3,1,NULL,3),(3,1,NULL,4),(3,1,"mimi@gmail.com",5),(3,1,NULL,5),(3,1,"giogio@yahoo.com",3),(3,1,NULL,5),(3,1,NULL,5),(3,1,NULL,4),(4,1,NULL,1),(4,1,NULL,1),(4,1,NULL,1),(4,1,NULL,4),(4,1,NULL,5),
-                                                                          (4,1,"jonah@reticle.com",1),(4,1,NULL,2),(4,1,NULL,2),(4,1,NULL,4),(4,1,NULL,5),(5,1,NULL,3),(5,1,"a@b.com",5),(5,1,NULL,4),(5,1,NULL,3),(5,1,NULL,3),(5,1,"heyo@gmail.com",1),(5,1,NULL,3),(6,1,NULL,4),
-                                                                          (6,1,NULL,1),(6,1,NULL,5),(6,1,NULL,5),(6,1,"hello@jamision.org",5),(6,1,NULL,4),(6,1,NULL,1),(6,1,NULL,5),(7,1,NULL,5),(6,1,NULL,1),(6,1,NULL,2),(6,1,NULL,1),(7,1,NULL,4),(6,1,NULL,4),(7,1,NULL,5),
-                                                                          (7,1,NULL,4),(7,1,NULL,3),(8,1,NULL,2),(8,1,"miles@perhour.org",3),(8,1,NULL,4),(8,1,NULL,5),(8,1,"icyhot@eco.com",3),(8,1,NULL,1),(8,1,NULL,5),(8,1,NULL,3),(8,1,NULL,3),(8,1,NULL,5),(9,1,NULL,5),(9,1,NULL,1),(9,1,NULL,1),
-                                                                          (9,1,NULL,1),(9,1,NULL,1),(9,1,NULL,1),(9,1,NULL,1),(9,1,NULL,1),(9,1,NULL,2),(9,1,NULL,1),(9,1,NULL,1),(9,1,NULL,1),(10,1,"keebler@cookies.gov",4),(10,1,NULL,5),(10,1,NULL,4),(10,1,NULL,4),(10,1,NULL,3),(10,1,NULL,4)
-                                                                          ,(10,1,NULL,5),(10,1,NULL,4),(10,1,NULL,3),(10,1,NULL,2),(10,1,"edgewise@nowords.co",1),(10,1,NULL,1),(10,1,NULL,1),(10,1,NULL,1),(10,1,NULL,1),(10,1,NULL,4),(10,1,NULL,3),(10,1,NULL,2),(10,1,NULL,1),(9,1,"times@up.org",1);
+insert into ratingsCollection(dbNumber,versionNumber,rating) values (1,1,4),(1,1,3),(1,1,5),(1,1,1),(1,1,2),(1,1,4),(1,1,4),(1,1,3),(1,1,3),(1,1,4),(1,1,4),(1,1,3),(1,1,5),(1,1,5),
+																		  (2,1,1),(2,1,4),(2,1,5),(2,1,4),(2,1,3),(2,1,3),(2,1,3),(2,1,4),(2,1,5),(2,1,4),(2,1,1),(2,1,3),
+                                                                          (3,1,3),(3,1,4),(3,1,5),(3,1,5),(3,1,3),(3,1,5),(3,1,5),(3,1,4),(4,1,1),(4,1,1),(4,1,1),(4,1,4),(4,1,5),
+                                                                          (4,1,1),(4,1,2),(4,1,2),(4,1,4),(4,1,5),(5,1,3),(5,1,5),(5,1,4),(5,1,3),(5,1,3),(5,1,1),(5,1,3),(6,1,4),
+                                                                          (6,1,1),(6,1,5),(6,1,5),(6,1,5),(6,1,4),(6,1,1),(6,1,5),(7,1,5),(6,1,1),(6,1,2),(6,1,1),(7,1,4),(6,1,4),(7,1,5),
+                                                                          (7,1,4),(7,1,3),(8,1,2),(8,1,3),(8,1,4),(8,1,5),(8,1,3),(8,1,1),(8,1,5),(8,1,3),(8,1,3),(8,1,5),(9,1,5),(9,1,1),(9,1,1),
+                                                                          (9,1,1),(9,1,1),(9,1,1),(9,1,1),(9,1,1),(9,1,2),(9,1,1),(9,1,1),(9,1,1),(10,1,4),(10,1,5),(10,1,4),(10,1,4),(10,1,3),(10,1,4)
+                                                                          ,(10,1,5),(10,1,4),(10,1,3),(10,1,2),(10,1,1),(10,1,1),(10,1,1),(10,1,1),(10,1,1),(10,1,4),(10,1,3),(10,1,2),(10,1,1),(9,1,1);
 TRUNCATE TABLE ratingsTotal;
 insert into ratingsTotal select dbNumber,versionNumber,count(*),round(avg(rating),1) from ratingsCollection group by dBNumber,versionNumber order by dBNumber,versionNumber;

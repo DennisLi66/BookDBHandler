@@ -2,6 +2,8 @@
 
 import mysql.connector
 import mySQLgenre as genre
+import mySQLsales as sales
+import mySQLrating as rate
 
 def produceConnection(fileName):
     """ Take a file name and extract the information required to return a mysql
@@ -47,15 +49,11 @@ and ratingsTotal.dbNumber = formats.dbNumber WHERE generalInfo.dbNumber = %s;"""
     #     print(x);
     return res;
 
-def addPurchase(conn,db,vnum,dateSold,soldAt):
-    return;
-
-def addRating(conn,db,vnum,rating,email = "NULL"):
-    return;
-
 if __name__ == '__main__':
     print("Connecting...");
     conn = produceConnection("config.txt");
     findBookByDatabaseNumber(conn,1);
     genre.searchByGenre(conn,"Textbook");
+    # genre.addGenre(conn,"Bestseller",4)# works
+    rate.addRating(conn,1,1,5)
     print("Finished");

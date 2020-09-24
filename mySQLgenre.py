@@ -19,3 +19,10 @@ def getGenres(conn):
     cursor.execute(query)
     return mycursor.fetchall();
 
+def addGenre(conn,genre,dbNumber):
+    query = "INSERT INTO genres (dbNumber,genre) values (%s,%s)";
+    cursor = conn.cursor(prepared = True);
+    cursor.execute(query,(dbNumber,genre));
+    conn.commit();
+
+    
