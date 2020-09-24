@@ -11,9 +11,11 @@ insert into generalInfo(title) values ("The 39 Clues: The Maze of Bones");
 insert into generalInfo(title) values ("The 39 Clues: One False Note");
 insert into generalInfo(title) values ("The 39 Clues: The Sword Thief");
 insert into generalInfo(title) values ("Distributed Algorithms: An Intuitive Approach, 2nd Edition");
+
+
 /*Version Info*/
 TRUNCATE TABLE formats;
-insert into formats(dBNumber,versionNumber,formatType,ISBN,lang,publisher,length,releaseDate) values (1,1,"Paperback","978-1-942993-36-0","English","Vertical Comics",216,'2019-04-19'),
+insert into formats(dbNumber,versionNumber,formatType,ISBN,lang,publisher,length,releaseDate) values (1,1,"Paperback","978-1-942993-36-0","English","Vertical Comics",216,'2019-04-19'),
 																									 (2,1,"Paperback","978-1-63236-666-5","English","Kodansha Comics",192,'2018-07-10'),
                                                                                                      (3,1,"Paperback","9-780316-013697","English","Hachette Book Group",229,'2009-04-01'),
                                                                                                      (4,1,"Hardcover","978-0-393-60939-4","English","W.W.Norton & Company",209,'2017-05-02'),
@@ -22,7 +24,8 @@ insert into formats(dBNumber,versionNumber,formatType,ISBN,lang,publisher,length
                                                                                                      (7,1,"Hardcover","978-0-545-06039-4","English","Scholastic Press",220,"2008-09-09"),
                                                                                                      (8,1,"Hardcover","978-0-545-06042-4","English","Scholastic INC",176,"2008-12-02"),
                                                                                                      (9,1,"Hardcover","978-0-545-06043-1","English","Scholastic",160,"2009-03-03"),
-                                                                                                     (10,1,"Hardcover","978-0-262-03766-2","English","The MIT Press",254,'2018-03-02');
+                                                                                                     (10,1,"Hardcover","978-0-262-03766-2","English","The MIT Press",254,'2018-03-02'),
+                                                                                                     (4,2,"Kindle",NULL,"English","W.W.Norton & Company",209,'2017-05-02');
 /*Series Info*/
 TRUNCATE TABLE series;
 insert into series(dbNumber,seriesName,sequenceNumber) values (2,"Grand Blue Dreaming",1),(6,"Grand Blue Dreaming",2),(7,"The 39 Clues",1),(8,"The 39 Clues",2),(9,"The 39 Clues",3);

@@ -3,11 +3,11 @@ create database bookhandler;
 
 use bookhandler;
 create table generalInfo(
-dBNumber int NOT NULL AUTO_INCREMENT PRIMARY KEY, /* Database Number */
+dbNumber int NOT NULL AUTO_INCREMENT PRIMARY KEY, /* Database Number */
 title varchar(255) /*Title of Book*/
 );
 create table formats(
-dBNumber int, /* Database Number */
+dbNumber int, /* Database Number */
 versionNumber int /*Used with above to denote version*/,
 formatType varchar(255) /*Hardcover, Paperback, etc...*/,
 ISBN varchar(255) NULL UNIQUE, /* ISBN */
@@ -60,4 +60,17 @@ create table ratingsTotal (
     versionNumber int, /* Version Number */
     raterCount int, /* Amount of People Who Rated */
     avgRating float /* Average Rating, May want to limit to X.X decimals, round up*/
-)
+);
+-- Find Book By Database Number 
+-- select generalInfo.title,generalInfo.dBNumber,formats.formatType,formats.ISBN,formats.lang,formats.publisher,formats.length,ratingsTotal.avgRating,ratingsTotal.raterCount
+-- from generalInfo left join formats on generalInfo.dbNumber = formats.dbNumber 
+-- left join ratingsTotal on formats.versionNumber = ratingsTotal.versionNumber 
+-- and ratingsTotal.dbNumber = formats.dbNumber
+-- WHERE generalInfo.dBNumber = 1;
+
+-- Find Genres
+-- select distinct genre from genres order by genre asc;
+
+-- Find all books of a certain genre
+  select distinct generalInfo.dbNumber,title from genres right join generalInfo on generalInfo.dbNumber = genres.dbNumber 
+  where genres.dbNumber in (select dbNumber from genres where genre = "Action")
