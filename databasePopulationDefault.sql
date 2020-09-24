@@ -66,6 +66,7 @@ insert into soldHistory(dbNumber,versionNumber,dateSold,soldAtPriceOf) values (1
                                                                               (4,1,'2019-11-04',11.99),
                                                                               (4,1,'2029-02-04',11.99);
 TRUNCATE Table soldTotal;
+insert into soldTotal select dbNumber,versionNumber,count(*),round(sum(soldAtPriceOf),2) from soldHistory group by dbNumber,versionNumber ORDER BY dbNumber,versionNumber asc;
 /*ratingsCollection , ratingsTotal*/
 TRUNCATE TABLE ratingsCollection;
 insert into ratingsCollection(dbNumber,versionNumber,email,rating) values (1,1,NULL,4),(1,1,NULL,3),(1,1,NULL,5),(1,1,NULL,1),(1,1,NULL,2),(1,1,NULL,4),(1,1,NULL,4),(1,1,NULL,3),(1,1,NULL,3),(1,1,NULL,4),(1,1,NULL,4),(1,1,NULL,3),(1,1,NULL,5),(1,1,NULL,5),
@@ -75,5 +76,6 @@ insert into ratingsCollection(dbNumber,versionNumber,email,rating) values (1,1,N
                                                                           (6,1,NULL,1),(6,1,NULL,5),(6,1,NULL,5),(6,1,"hello@jamision.org",5),(6,1,NULL,4),(6,1,NULL,1),(6,1,NULL,5),(7,1,NULL,5),(6,1,NULL,1),(6,1,NULL,2),(6,1,NULL,1),(7,1,NULL,4),(6,1,NULL,4),(7,1,NULL,5),
                                                                           (7,1,NULL,4),(7,1,NULL,3),(8,1,NULL,2),(8,1,"miles@perhour.org",3),(8,1,NULL,4),(8,1,NULL,5),(8,1,"icyhot@eco.com",3),(8,1,NULL,1),(8,1,NULL,5),(8,1,NULL,3),(8,1,NULL,3),(8,1,NULL,5),(9,1,NULL,5),(9,1,NULL,1),(9,1,NULL,1),
                                                                           (9,1,NULL,1),(9,1,NULL,1),(9,1,NULL,1),(9,1,NULL,1),(9,1,NULL,1),(9,1,NULL,2),(9,1,NULL,1),(9,1,NULL,1),(9,1,NULL,1),(10,1,"keebler@cookies.gov",4),(10,1,NULL,5),(10,1,NULL,4),(10,1,NULL,4),(10,1,NULL,3),(10,1,NULL,4)
-                                                                          ,(10,1,NULL,5),(10,1,NULL,4),(10,1,NULL,3),(10,1,NULL,2),(10,1,"edgewise@nowords.co",1),(10,1,NULL,1),(10,1,NULL,1),(10,1,NULL,1),(10,1,NULL,1),(10,1,NULL,4),(10,1,NULL,3),(10,1,NULL,2),(10,1,NULL,1);
+                                                                          ,(10,1,NULL,5),(10,1,NULL,4),(10,1,NULL,3),(10,1,NULL,2),(10,1,"edgewise@nowords.co",1),(10,1,NULL,1),(10,1,NULL,1),(10,1,NULL,1),(10,1,NULL,1),(10,1,NULL,4),(10,1,NULL,3),(10,1,NULL,2),(10,1,NULL,1),(9,1,"times@up.org",1);
 TRUNCATE TABLE ratingsTotal;
+insert into ratingsTotal select dbNumber,versionNumber,count(*),round(avg(rating),1) from ratingsCollection group by dBNumber,versionNumber order by dBNumber,versionNumber;
