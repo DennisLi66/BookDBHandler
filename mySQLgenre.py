@@ -17,7 +17,7 @@ def getGenres(conn):
     query = "select distinct genre from genres order by genre asc;";
     cursor = conn.cursor();
     cursor.execute(query)
-    return mycursor.fetchall();
+    return cursor.fetchall();
 
 def addGenre(conn,genre,dbNumber):
     query = "INSERT INTO genres (dbNumber,genre) values (%s,%s)";
