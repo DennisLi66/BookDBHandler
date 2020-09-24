@@ -3,18 +3,18 @@ create database bookhandler;
 
 use bookhandler;
 create table generalInfo(
-dBNumber int NOT NULL AUTO_INCREMENT , /* Database Number */
+dBNumber int NOT NULL AUTO_INCREMENT PRIMARY KEY, /* Database Number */
 title varchar(255) /*Title of Book*/
 );
 create table formats(
 dBNumber int, /* Database Number */
 versionNumber int /*Used with above to denote version*/,
 formatType varchar(255) /*Hardcover, Paperback, etc...*/,
-ISBN int NULL UNIQUE, /* ISBN */
+ISBN varchar(255) NULL UNIQUE, /* ISBN */
 lang varchar(255) NULL,
 publisher varchar(255) /* I assume different versions can have different publishers */,
 length int NULL /*Page Count*/,
-releaseDate date,
+releaseDate date
 );
 create table series(
 	dbNumber int, /* database number */
@@ -52,7 +52,7 @@ genre varchar(255) /* Genre Name */
 create table ratingsCollection (
 	dbNumber int, /* Database Number */
     versionNumber int, /* Maybe different versions have different ratings, hard to say */
-    email varchar(255) unique, /* User Email, tied to rating, can be null */
+    email varchar(255) unique NULL, /* User Email, tied to rating, can be null */
     rating int /* 1 to 5*/
 );
 create table ratingsTotal (
