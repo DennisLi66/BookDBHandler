@@ -61,22 +61,35 @@ create table ratingsTotal (
     avgRating float /* Average Rating, May want to limit to X.X decimals, round up*/
 );
 
+--         select generalInfo.dbNumber,title,lang,publisher,length,releaseDate,avgRating,price
+--         from  generalInfo 
+--         right join formats ON formats.dbNumber = generalInfo.dbNumber 
+--         left join ratingsTotal on formats.versionNumber = ratingsTotal.versionNumber and ratingsTotal.dbNumber = formats.dbNumber
+--         left join pricing on formats.versionNumber = pricing.versionNumber AND pricing.dbNumber = formats.dbNumber
+--         WHERE title = "Astro"
+
+
+-- select * from generalInfo 
+-- right join formats on formats.dbNumber = generalInfo.dbNumber 
+-- left join ratingsTotal on ratingsTotal.dbNumber = formats.dbNumber AND formats.versionNumber = ratingsTotal.versionNumber
+-- left join pricing on formats.dbNumber = pricing.dbNumber AND formats.versionNumber = pricing.versionNumber;
+
 -- select generalInfo.dbNumber,title,lang,publisher,length,releaseDate,avgRating,price
--- from  generalInfo 
--- left join formats ON formats.dbNumber = generalInfo.dbNumber 
+-- from 
+-- formats  left join generalInfo  ON formats.dbNumber = generalInfo.dbNumber 
 -- left join ratingsTotal on formats.versionNumber = ratingsTotal.versionNumber and ratingsTotal.dbNumber = formats.dbNumber
 -- left join pricing on formats.versionNumber = pricing.versionNumber AND pricing.dbNumber = formats.dbNumber
--- WHERE avgRating >= "4"
+-- WHERE avgRating >= "`1"
 
 
 
 
 -- select generalInfo.dbNumber,title,lang,publisher,length,releaseDate,avgRating,price
--- from contributors left join generalInfo on generalInfo.dbNumber = contributors.dbNumber 
+-- from contributors right join generalInfo on generalInfo.dbNumber = contributors.dbNumber 
 -- left join formats ON formats.dbNumber = contributors.dbNumber AND formats.versionNumber = contributors.versionNumber 
 -- left join ratingsTotal on formats.versionNumber = ratingsTotal.versionNumber and ratingsTotal.dbNumber = formats.dbNumber
 -- left join pricing on formats.versionNumber = pricing.versionNumber AND pricing.dbNumber = formats.dbNumber
--- WHERE personName LIKE "%Kenji%"
+-- WHERE personName LIKE "%Neil%"
 
 
 -- select generalInfo.dbNumber,title,formatType,ISBN,lang,publisher,length,releaseDate,dateSold,soldAtPriceOf from generalInfo left join formats on formats.dBNumber = generalInfo.dBNumber 
@@ -106,3 +119,5 @@ create table ratingsTotal (
 -- Insert genre --
 -- Insert into genres (dbNumber,genre) values (4,"Nonfiction")
 -- select * from genres;
+
+
