@@ -7,19 +7,19 @@ def addPurchase(conn,db,vnum,dateSold,soldAt):
             VALUES (%s,%s,%s,%s) 
             """;
     cursor = conn.cursor(prepared=True);
-    cursor.execute(query,(db,vnum,dateSold,soldAt));
+    cursor.execute(query,(str(db),str(vnum),str(dateSold),str(soldAt)));
     conn.commit();
 
     query2 = """
             SELECT totalSold, totalPrice * from soldTotal WHERE
             dbNumber = %s AND versionNumber = %s;
              """
-    cursor.execute(query2,(db,vnum));
+    cursor.execute(query2,(str(db),str(vnum)));
     if not cursor.rowcount:
         query4 = """INSERT INTO soldTotal (dbNumber,versionNumber,totalSold,totalPrice)
                 VALUES (%s,%s,1,%s)
         """
-        cursor.execute(query4,(db,vnum,soldAt));
+        cursor.execute(query4,(str(db),str(vnum),str(soldAt)));
         conn.commit();
         return;
     res = cursor.fetchall();
@@ -27,7 +27,7 @@ def addPurchase(conn,db,vnum,dateSold,soldAt):
         sold = int(x[0]) + 1;
         price = float(x[1]) + float(soldAt);
         query3 = "UPDATE soldTotal (dbNumber,versionNumber,totalSold,totalPrice) VALUES (%s,%s,%s,%s)"
-        cursor.execute(query3,(db,vnum,sold,price));
+        cursor.execute(query3,(str(db),str(vnum),str(sold),str(price)));
         conn.commit();
         return;
 
@@ -36,17 +36,17 @@ def changePrice(conn,db,vnum,price)
     #look at pricing and change it if it exists
     query = "SELECT * FROM pricing WHERE dbNumber = %s AND versionNumber = %s";
     cursor = conn.cursor(prepared = True);
-    cursor.execute(query,(db,vnum));
+    cursor.execute(query,(str(db),str(vnum)));
     if not cursor.rowcount:
         #insert
         query2 = "INSERT INTO pricing (dbNumber,versionNumber,price) VALUES (%s,%s,%s)";
-        cursor.execute(query2,(db,vnum,price))
+        cursor.execute(query2,(str(db),str(vnum),str(price)))
         cursor.commit();
         return;
     else:
         #Update
         query3 = "UPDATE pricing SET price = %s WHERE dbNumber = %s AND versionNumber = %s"
-        cursor.execute(query3,(price,db,vnum));
+        cursor.execute(query3,(str(price),str(db),str(vnum)));
         conn.commit()
         return;
         
@@ -57,7 +57,7 @@ select generalInfo.dbNumber,title,formatType,ISBN,lang,publisher,length,releaseD
 right join soldHistory on soldHistory.versionNumber = formats.versionNumber and soldHistory.dbNumber = formats.dbNumber WHERE generalInfo.dbNumber = %s order by dateSold desc;
             """;
     cursor = conn.cursor(prepared = True);
-    cursor.execute(query,string(db))
+    cursor.execute(query,str(db))
     return cursor.fetchall();
 
 def viewTotalSales(conn):
@@ -76,5 +76,5 @@ def getPriceInfo(conn,db):
             WHERE generalInfo.dbNumber = %s
             """
     cursor = conn.cursor(prepared = True);
-    cursor.execute(query,(string(db)))
+    cursor.execute(query,(str(db)))
     return cursor.fetchall();
