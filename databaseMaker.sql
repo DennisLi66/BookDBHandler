@@ -61,12 +61,12 @@ create table ratingsTotal (
     avgRating float /* Average Rating, May want to limit to X.X decimals, round up*/
 );
 
-select generalInfo.dbNumber,title,lang,publisher,length,releaseDate,avgRating,price
-from  generalInfo 
-left join formats ON formats.dbNumber = generalInfo.dbNumber 
-left join ratingsTotal on formats.versionNumber = ratingsTotal.versionNumber and ratingsTotal.dbNumber = formats.dbNumber
-left join pricing on formats.versionNumber = pricing.versionNumber AND pricing.dbNumber = formats.dbNumber
-WHERE title LIKE "%Blue%"
+-- select generalInfo.dbNumber,title,lang,publisher,length,releaseDate,avgRating,price
+-- from  generalInfo 
+-- left join formats ON formats.dbNumber = generalInfo.dbNumber 
+-- left join ratingsTotal on formats.versionNumber = ratingsTotal.versionNumber and ratingsTotal.dbNumber = formats.dbNumber
+-- left join pricing on formats.versionNumber = pricing.versionNumber AND pricing.dbNumber = formats.dbNumber
+-- WHERE avgRating >= "4"
 
 
 

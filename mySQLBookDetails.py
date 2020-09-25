@@ -52,7 +52,14 @@ def addBook(conn,title,formatType,publisher,length,releaseDate,ISBN = "NULL",lan
         db = x[0];
         addFormat(conn,str(db),str(1),formatType,publisher,str(length),releaseDate,ISBN,lang);
         return;
-        
+
+def getContributor(conn,db,vn):
+    sQuery = """SELECT * from contributors WHERE dbNumber = %s AND versionNumber = %s"""
+    cursor = conn.cursor(prepared = True);
+    cursor = execute(sQuery,(str(db),str(vn)));
+    if not cursor.rowcount:
+        return False;
+    return cursor.fetchall()
 
 
 
