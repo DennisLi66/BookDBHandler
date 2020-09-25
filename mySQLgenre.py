@@ -1,5 +1,5 @@
 import mysql.connector
-
+import mySQLScripts as connector
 
 def searchByGenre(conn,genre):
     query = """ select distinct generalInfo.title,generalInfo.dBNumber,formats.formatType,formats.ISBN,formats.lang,formats.publisher,formats.length,ratingsTotal.avgRating,ratingsTotal.raterCount
@@ -25,4 +25,15 @@ def addGenre(conn,genre,dbNumber):
     cursor.execute(query,(dbNumber,genre));
     conn.commit();
 
-
+if __name__ == '__main__':
+    ci = connector.produceConnection("config.txt");
+    print("Test 1");
+    results = getGenres(ci);
+    for x in results:
+        print(x)
+    print("Test 2");
+    results = searchByGenre(ci,"Action");
+    for x in results:
+        print(x)
+    print("Test 3");
+    #addGenre(ci,"Inspirational",16);
