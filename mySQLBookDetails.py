@@ -15,16 +15,16 @@ def addContributor(conn,db,vn,name,role):
     query = """INSERT INTO contributors (dbNumber,versionNumber,personName,roleName)
     VALUES (%s,%s,%s,%s)""";
     cursor = conn.cursor(prepared = True);
-    cursor = execute(query,(db,vn,name,role));
+    cursor = execute(query,(str(db),str(vn),name,role));
     conn.commit();
 
 def addToSeries(conn,db,series,order):
     cQuery = "SELECT * FROM series WHERE dbNumber = %s AND seriesName = %s AND sequenceNumber = %s";
     cursor = conn.cursor(prepared = True);
-    cursor = execute(query,(db,series,order));
+    cursor = execute(query,(str(db),series,str(order)));
     if not cursor.rowcount:
         query = "INSERT INTO series (dbNumber,seriesName,sequenceNumber) VALUES (%s,%s,%s)"
-        cursor.execute(query,(db,series,order));
+        cursor.execute(query,(str(db),series,str(order)));
         conn.commit();
         return True;
     else:
@@ -36,6 +36,14 @@ def addFormat(conn,db,vn,formatType,publisher,length,releaseDate,ISBN = "NULL",l
              VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
              """;
     cursor = conn.cursor(prepared = True);
-    cursor = execute(iQuery,(db,vn,formatType,publisher,length,releaseDate,ISBN,lang))
+    cursor = execute(iQuery,(str(db),str(vn),formatType,publisher,str(length),releaseDate,ISBN,lang))
     conn.commit();
     return;
+
+def addBook(conn,title,formatType,publisher,length,releaseDate,ISBN,lang,price,author):
+    iQuery = """INSERT INTO generalInfo(title) VALUES (&s) """;
+    sQuery = """SELECT * FROM generalInfo ORDER BY dbNumber DESC """;
+    cursor = conn.cursor(prepared = True);
+    cursor = execute(iQuery,(title))
+    cursor.commit();
+    
