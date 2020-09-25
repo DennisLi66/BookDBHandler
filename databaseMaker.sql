@@ -61,7 +61,12 @@ create table ratingsTotal (
     avgRating float /* Average Rating, May want to limit to X.X decimals, round up*/
 );
 
-
+select generalInfo.dbNumber,title,lang,publisher,length,releaseDate,avgRating,price
+from contributors left join generalInfo on generalInfo.dbNumber = contributors.dbNumber 
+left join formats ON formats.dbNumber = contributors.dbNumber AND formats.versionNumber = contributors.versionNumber 
+left join ratingsTotal on formats.versionNumber = ratingsTotal.versionNumber and ratingsTotal.dbNumber = formats.dbNumber
+left join pricing on formats.versionNumber = pricing.versionNumber AND pricing.dbNumber = formats.dbNumber
+WHERE personName LIKE "%Kenji%"
 
 
 -- select generalInfo.dbNumber,title,formatType,ISBN,lang,publisher,length,releaseDate,dateSold,soldAtPriceOf from generalInfo left join formats on formats.dBNumber = generalInfo.dBNumber 

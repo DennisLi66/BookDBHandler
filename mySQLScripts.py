@@ -4,6 +4,8 @@ import mysql.connector
 import mySQLgenre as genre
 import mySQLsales as sales
 import mySQLrating as rate
+import mySQLBookDetails as book
+import mySQLSearchMechanics as search
 
 def produceConnection(fileName):
     """ Take a file name and extract the information required to return a mysql
@@ -36,18 +38,6 @@ def produceConnection(fileName):
       database = "bookhandler"
         )
     return conn;
-
-def findBookByDatabaseNumber(conn,num):
-    query = """select generalInfo.title,generalInfo.dBNumber,formats.formatType,formats.ISBN,formats.lang,formats.publisher,formats.length,ratingsTotal.avgRating,ratingsTotal.raterCount
-from generalInfo left join formats on generalInfo.dbNumber = formats.dbNumber 
-left join ratingsTotal on formats.versionNumber = ratingsTotal.versionNumber 
-and ratingsTotal.dbNumber = formats.dbNumber WHERE generalInfo.dbNumber = %s;"""
-    cursor = conn.cursor(prepared=True);
-    cursor.execute(query,(str(num)));
-    res = cursor.fetchall();
-    # for x in res:
-    #     print(x);
-    return res;
 
 if __name__ == '__main__':
     print("Connecting...");

@@ -40,7 +40,7 @@ def addFormat(conn,db,vn,formatType,publisher,length,releaseDate,ISBN = "NULL",l
     conn.commit();
     return;
 
-def addBook(conn,title,formatType,publisher,length,releaseDate,price,ISBN = "NULL",lang = "English"):
+def addBook(conn,title,formatType,publisher,length,releaseDate,ISBN = "NULL",lang = "English"):
     iQuery = """INSERT INTO generalInfo(title) VALUES (&s) """;
     sQuery = """SELECT dbNumber FROM generalInfo ORDER BY dbNumber DESC """;
     cursor = conn.cursor(prepared = True);
@@ -50,7 +50,8 @@ def addBook(conn,title,formatType,publisher,length,releaseDate,price,ISBN = "NUL
     llist = cursor.fetchall();
     for x in llist:
         db = x[0];
-        addFormat(conn,db,1,formatType,publisher,length,releaseDate,ISBN,lang);
+        addFormat(conn,str(db),str(1),formatType,publisher,str(length),releaseDate,ISBN,lang);
+        return;
         
 
 
