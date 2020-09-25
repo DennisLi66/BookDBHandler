@@ -62,7 +62,8 @@ create table ratingsTotal (
 );
 
 
-
+select generalInfo.dbNumber,title,formatType,ISBN,lang,publisher,length,releaseDate,dateSold,soldAtPriceOf from generalInfo left join formats on formats.dBNumber = generalInfo.dBNumber 
+left join soldHistory on soldHistory.versionNumber = formats.versionNumber and soldHistory.dbNumber = formats.dbNumber order by dateSold desc;
 
 -- select generalInfo.dbNumber,title,formats.versionNumber,formatType,ISBN,lang,publisher,length,releaseDate,price from generalInfo left join formats on generalInfo.dbNumber = formats.dbNumber left join pricing on pricing.versionNumber = formats.versionNumber and pricing.dbNumber = formats.dbNumber
 -- select generalInfo.dbNumber,generalInfo.title,formatType,ISBN,lang,publisher,length,releaseDate,totalSold,totalPrice

@@ -16,16 +16,23 @@ def addRating(conn,db,vnum,rating):
                  WHERE dbNumber = %s AND versionNumber = %s
              """
     cursor.execute(query2,(db,vnum));
-    res = cursor.fetchall();
-
-    for x in res:
-        totalRaters = int(x[0]);
-        avgRating = float(x[1]);
-        avgRating = ((avgRating * totalRaters)+ rating)/(totalRaters + 1);
-        totalRaters += 1;
-        query3 = "UPDATE ratingsTotal SET raterCount = %s, avgRating = %s WHERE dbNumber = %s AND versionNumber = %s";
-        cursor.execute(query3,(totalRaters,avgRating,db,vnum))
+    if not cursor.rowcount:
+        query4 = """INSERT INTO ratingsTotal(dbNumber,versionNumber,raterCount,avgRating)
+                VALUES (%s,%s,%s,1)
+                 """;
+        cursor.execute(query4,(db,vnum,rating))
         conn.commit()
         return;
+    else:
+        res = cursor.fetchall();
+        for x in res:
+            totalRaters = int(x[0]);
+            avgRating = float(x[1]);
+            avgRating = ((avgRating * totalRaters)+ float(rating))/(totalRaters + 1);
+            totalRaters += 1;
+            query3 = "UPDATE ratingsTotal SET raterCount = %s, avgRating = %s WHERE dbNumber = %s AND versionNumber = %s";
+            cursor.execute(query3,(totalRaters,avgRating,db,vnum))
+            conn.commit()
+            return;
 
 

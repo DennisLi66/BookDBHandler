@@ -25,4 +25,4 @@ def addGenre(conn,genre,dbNumber):
     cursor.execute(query,(dbNumber,genre));
     conn.commit();
 
-    
+
