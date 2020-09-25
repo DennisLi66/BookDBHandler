@@ -32,7 +32,7 @@ def addPurchase(conn,db,vnum,dateSold,soldAt):
         return;
 
 
-def changePrice(conn,db,vnum,price)
+def changePrice(conn,db,vnum,price):
     #look at pricing and change it if it exists
     query = "SELECT * FROM pricing WHERE dbNumber = %s AND versionNumber = %s";
     cursor = conn.cursor(prepared = True);

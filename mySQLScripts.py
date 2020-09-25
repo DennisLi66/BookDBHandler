@@ -42,7 +42,7 @@ def produceConnection(fileName):
 if __name__ == '__main__':
     print("Connecting...");
     conn = produceConnection("config.txt");
-    findBookByDatabaseNumber(conn,1);
+    search.findBookByDatabaseNumber(conn,1);
     genre.searchByGenre(conn,"Textbook");
     # genre.addGenre(conn,"Bestseller",4)# works
     rate.addRating(conn,1,1,5)

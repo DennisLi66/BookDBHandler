@@ -31,7 +31,7 @@ def addToSeries(conn,db,series,order):
         return False;
         #Something of that sequence was already there
 
-def addFormat(conn,db,vn,formatType,publisher,length,releaseDate,ISBN = "NULL",lang="English")
+def addFormat(conn,db,vn,formatType,publisher,length,releaseDate,ISBN = "NULL",lang="English"):
     iQuery = """INSERT INTO formats (databaseNumber,versionNumber,formatType,publisher,length,releaseDate,ISBN,lang)
              VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
              """;
