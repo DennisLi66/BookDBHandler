@@ -1,4 +1,5 @@
 import mysql.connector
+import mySQLScripts as connection
 
 def addRating(conn,db,vnum,rating):
     query = "";
@@ -35,4 +36,6 @@ def addRating(conn,db,vnum,rating):
             conn.commit()
             return;
 
-
+if __name__ == "__main__":
+    conn = connection.produceConnection("config.txt");
+    addRating(conn,16,1,1)
