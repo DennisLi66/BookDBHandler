@@ -47,5 +47,7 @@ def main():
                     print(x);                  
         elif(action == "5"):
             print("What is the lowest star rating you'll acccept? (1-5) (Press Enter without typing anything to cancel)")
+            print("What is the highest star rating you'll accept? (1-5) (Press Enter without typing anything to cancel)")
+            highest = input
 if __name__ == '__main__':
     main()
